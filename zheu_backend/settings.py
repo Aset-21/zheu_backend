@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-n(ushodunxiu1u4=+38hltmbyxozn+-ma@74x7bbv5uybl_=f8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     "ninja_jwt",    # JWT аутентификация
     # Локальные приложения
     "apps.users",
-    "apps.paymets"
+    "apps.paymets",
+    "corsheaders"
 
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
