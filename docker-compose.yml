@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build: .  # Строит из Dockerfile в текущей директории
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"  # Автоматически применяет миграции при запуске
+    volumes:
+      - .:/app  # Монтирует код для hot-reload
+      - ./db.sqlite3:/app/db.sqlite3  # Монтирует файл SQLite локально (persistent на хосте)
+    ports:
+      - "8001:8000"  # Внешний порт 8001 хоста → внутренний 8000 контейнера
+    environment:
+      - DEBUG=1  # Опционально, для Django settings (если нужно)
